@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Photo Gallery</title>
+  
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 15px;
+      width: 100%;vc
+      max-width: 1400px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(255,255,255,0.2);
+      animation: zoomIn 0.4s ease;
+    }
+
+    @keyframes zoomIn {
+      from {transform: scale(0.7);}
+      to {transform: scale(1);}
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 25px;
+      right: 40px;
+      font-size: 40px;
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .close-btn:hover {
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gallery">
+    <!-- Add up to 30 images -->
+    <img src="4b2363ee2815048fe2c841697cb4999c (1).jpg" alt="Photo 1">
+    <img src="8bcb99bf153e4a40279d9c16db8059ca (2).jpg" alt="Photo 2">
+    <img src="599a4dae3b4a70a572abf083862636cb (1).jpg" alt="Photo 3">
+    <img src="5a8bfaadd1edad752d5d014755864aaf (1) (1).jpg" alt="Photo 4">
+    <img src="61b5c2ef46cffff8c89e4891a3dd0804 (1).jpg" alt="Photo 5">
+    <img src="80043b155ec4669e2f4ea14bb95ec626 (1).jpg" alt="Photo 6">
+    <img src="852782a42a3cde3aec6cd21f22401795 (1).jpg" alt="Photo 7">
+    <img src="a6fdb0bc175284455edabcfad1910d76 (1).jpg" alt="Photo 8">
+    <img src="a96b4d8bf341a141bf3e71ba0a641a8c (1).jpg" alt="Photo 9">
+    <img src="ace6409c72fbc82d0a254396d16ff3e2 (1).jpg" alt="Photo 10">
+    <img src="b4177e96a2538cbdbe8a9b4b13bc862c (1).jpg" alt="Photo 11">
+    <img src="bcbc94dab1be6913ff8ade96ee4f03fe (1) (1).jpg" alt="Photo 12">
+    <img src="ea917f135f87b8ae59172237d678e4c9 (1) (1).jpg" alt="Photo 13">
+    <img src="IMG-20250924-WA0009.jpg" alt="Photo 14">
+    <img src="IMG-20250924-WA0011.jpg" alt="Photo 15">
+    <img src="IMG-20250924-WA0012.jpg" alt="Photo 16">
+    <img src="IMG-20250924-WA0013.jpg" alt="Photo 17">
+    <img src="IMG-20250924-WA0014.jpg" alt="Photo 18">
+    <img src="IMG-20250924-WA0015.jpg" alt="Photo 19">
+    <img src="IMG-20250903-WA0024.jpg" alt="Photo 20">
+    <img src="IMG-20250924-WA0006.jpg" alt="Photo 21">
+    <img src="IMG-20250924-WA0007.jpg" alt="Photo 22">
+    <img src="IMG-20250924-WA0010.jpg" alt="Photo 23">
+    <img src="IMG-20250924-WA0007.jpg" alt="Photo 24">
+    <img src="IMG-20250924-WA0012.jpg" alt="Photo 25">
+    <img src="5a8bfaadd1edad752d5d014755864aaf (1) (1).jpg" alt="Photo 26">
+    <img src="85eadde55073efeb715edcfcddb342a1 (1).jpg" alt="Photo 27">
+    <img src="8bcb99bf153e4a40279d9c16db8059ca (1).jpg" alt="Photo 28">
+    <img src="IMG-20250924-WA0008.jpg" alt="Photo 29">
+    <img src="4b2363ee2815048fe2c841697cb4999c (1).jpg" alt="Photo 30">
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="close-btn" id="closeBtn">&times;</span>
+    <img src="" alt="Expanded view">
+  </div>
+
+  <script>
+    const images = document.querySelectorAll('.gallery img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    const closeBtn = document.getElementById('closeBtn');
+
+    images.forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.classList.add('active');
+        lightboxImg.src = img.src;
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target !== lightboxImg) {
+        lightbox.classList.remove('active');
+      }
+    });
+  </script>
+
+</body>
+</html>

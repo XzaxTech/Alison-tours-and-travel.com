@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Paradise - Contact</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">🌍 Alison  Tours and Travel</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="destinations.html">Destinations</a></li>
+      <li><a href="tours.html">Tours</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <div class="menu-toggle">☰</div>
+  </nav>
+
+  <section class="section">
+    <h2 class="section-title">Get in Touch</h2>
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </section>
+<!-- Social icons component: paste where you want the icons to appear -->
+<section class="social-icons" aria-label="Social links">
+  <a class="si-btn si-tiktok" href="#" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">
+    <!-- TikTok SVG -->
+    <svg viewBox="0 0 256 256" aria-hidden="true" focusable="false">
+      <path d="M160 40c0 0 0 64 48 64v40c0 0-32 0-56-24v96c0 0-48 0-80-32 0 0 48 0 80-32V40h8z"/>
+    </svg>
+  </a>
+
+  <a class="si-btn si-instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+    <!-- Instagram SVG (rounded square + camera) -->
+    <svg viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+      <rect x="48" y="48" width="416" height="416" rx="96" ry="96"/>
+      <circle cx="256" cy="256" r="80"/>
+      <circle cx="380" cy="132" r="20"/>
+    </svg>
+  </a>
+
+  <a class="si-btn si-whatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
+    <!-- WhatsApp SVG (chat bubble + phone) -->
+    <svg viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+      <path d="M256 48C141.1 48 48 137.6 48 248c0 55.9 25.5 107.1 67.9 143.3L96 464l78.9-18.6C206 460.3 230.9 464 256 464 370.9 464 464 374.4 464 264S370.9 48 256 48z"/>
+      <path d="M360 312c-6-3-34-16-39-18-5-2-9-3-13 3-3 6-14 18-17 21-3 3-7 4-13 1-6-3-25-9-47-29-18-16-30-36-33-42-3-6 0-9 2-12 2-3 4-6 6-9 2-3 1-6 0-9-1-3-13-31-18-42-5-11-10-9-13-9-3 0-6 0-9 0s-8 3-12 6c-4 3-17 16-17 39 0 24 18 47 20 50 2 3 35 56 85 82 50 26 50 17 59 16 9-1 34-14 39-27 5-13 5-24 4-27-1-3-7-5-13-8z"/>
+    </svg>
+  </a>
+</section>
+
+<style>
+  :root{
+    --si-size: 56px;            /* icon container size */
+    --si-gap: 14px;             /* gap between icons */
+    --si-radius: 14px;          /* roundness of container */
+    --si-bg: #0f1724;           /* default background (use transparent on colored areas) */
+    --si-muted: rgba(255,255,255,0.08);
+    --si-shadow: 0 6px 18px rgba(2,6,23,0.45);
+  }
+
+  /* Container */
+  .social-icons{
+    display: inline-flex;
+    gap: var(--si-gap);
+    align-items: center;
+    padding: 6px;
+    background: transparent;
+  }
+
+  /* Generic button */
+  .si-btn{
+    width: var(--si-size);
+    height: var(--si-size);
+    display: inline-grid;
+    place-items: center;
+    border-radius: var(--si-radius);
+    text-decoration: none;
+    transform: translateZ(0);
+    box-shadow: var(--si-shadow);
+    transition: transform 220ms cubic-bezier(.2,.9,.3,1), box-shadow 220ms, filter 220ms;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .si-btn svg{
+    width: 56%;
+    height: 56%;
+    display: block;
+    filter: drop-shadow(0 1px 0 rgba(0,0,0,0.15));
+    transition: transform 220ms, opacity 220ms;
+  }
+
+  /* Hover / focus accessible */
+  .si-btn:focus,
+  .si-btn:hover{
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 12px 28px rgba(2,6,23,0.55);
+    outline: none;
+  }
+
+  .si-btn:active{ transform: translateY(-2px) scale(.995); }
+
+  /* Focus ring for keyboard */
+  .si-btn:focus{
+    box-shadow: 0 6px 18px rgba(2,6,23,0.45), 0 0 0 4px rgba(99,102,241,0.14);
+  }
+
+  /* TikTok style: dark container + neon accent */
+  .si-tiktok{
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+    backdrop-filter: blur(6px);
+  }
+  .si-tiktok svg path{
+    fill: url(#tiktokGradient);
+    transform-origin: center;
+  }
+  /* create gradient via CSS mask fallback: we will draw gradient via an overlay */
+  .si-tiktok::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: conic-gradient(from 200deg, #25F4EE 0 30%, #ff2c55 30% 60%, #fff 60% 100%);
+    mix-blend-mode: screen;
+    opacity: .9;
+    transform: rotate(12deg) scale(1.3);
+    pointer-events:none;
+    filter: saturate(120%) contrast(120%);
+  }
+
+  /* Instagram style: gradient rounded square, icon transparent to reveal gradient */
+  .si-instagram{
+    background: linear-gradient(135deg,#fdf497 0%,#fdf497 5%,#fd5949 35%,#d6249f 60%,#285AEB 100%);
+    display: inline-grid;
+    place-items: center;
+  }
+  .si-instagram svg rect,
+  .si-instagram svg circle{ fill: rgba(255,255,255,0.98); mix-blend-mode: normal; }
+  .si-instagram svg rect{ opacity: 0.9; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.18)); }
+
+  /* Whatsapp style: green bubble with white glyph */
+  .si-whatsapp{
+    background: linear-gradient(0deg,#25D366,#128C7E 60%);
+  }
+  .si-whatsapp svg path{ fill: #fff; }
+
+  /* Small tooltip on hover (pure CSS) */
+  .si-btn::after{
+    content: attr(title);
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 10px);
+    bottom: calc(100% + 10px);
+    background: rgba(2,6,23,0.95);
+    color: #fff;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 160ms, transform 160ms;
+    z-index: 5;
+  }
+  .si-btn:hover::after,
+  .si-btn:focus::after{
+    opacity: 1;
+    transform: translate(-50%, 0px);
+  }
+
+  /* Responsive: make icons smaller on narrow screens */
+  @media (max-width:420px){
+    :root{ --si-size: 44px; --si-gap:10px; --si-radius:12px; }
+    .si-btn svg{ width: 60%; height: 60%; }
+  }
+
+  /* Optional: color overrides if you want the icons as outlines instead of filled */
+  /* Example usage: <a class="si-btn si-instagram outline"> ... */
+  .si-btn.outline svg *{ fill: none; stroke: currentColor; stroke-width: 18; }
+</style>
+  <footer>
+    <p>© 2025 Alison  Tours and Travel. All rights reserved.</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
